@@ -6,17 +6,18 @@ exports.config = {
     capabilities: {
         browserName:'chrome', 
         chromeOptions: {
-            args:["window-size=800,600"]
+            //args:["window-size=800,600"]
         }
     },
     onPrepare: function() {
         browser.driver.manage().window().maximize();
         console.log('Maximized');
+        browser.waitForAngularEnabled(false)
       },
         params: {
           input: {
-            first: '22',
-            second: '4432'
+            mail: 'apptest709@gmail.com',
+            pass: 'testappf0001'
           }
         }    
   }
