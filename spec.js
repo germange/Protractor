@@ -1,18 +1,17 @@
+let homePage = require('./pageObject/homePage');
+let loginPage = require('./pageObject/loginPage');
+let accountPage = require('./pageObject/accountPage');
+
 describe('Login', function() {
-    it('Jo Jo', function() {
-      browser.get('http://automationpractice.com/index.php');
-      browser.sleep(1000);
-      element((by.xpath('//*[@id="header"]//nav/div[1]/a'))).click();
-      browser.sleep(1000);
-      element((by.xpath('//*[@id="email"]'))).sendKeys(browser.params.input.mail);
-      browser.sleep(1000);
-      element((by.xpath('//*[@id="passwd"]'))).sendKeys(browser.params.input.pass);
-      browser.sleep(1000);
-      element((by.xpath('//*[@id="SubmitLogin"]/span'))).click();
-      browser.sleep(1000);
-  
+    it('Jo Jo', async function() {
+      await homePage.get();
+      await homePage.logInButton.click();
+      await loginPage.email(browser.params.input.mail);
+      await loginPage.password(browser.params.input.pass);
+      await loginPage.submitButton.click();
+        
       //expect(element(by.xpath('//*[@id="header"]/div[2]//a/span')).isPresent()).toBe(true);
-      expect(element(by.xpath('//*[@id="header"]/div[2]//a/span')).getText()).
-        toEqual('Jo Do'); // This is wrong!      
+        expect(await accountPage.getUserName()).
+        toEqual('Jo Do'); // This is wrong!        
     });
   });

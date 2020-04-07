@@ -2,6 +2,7 @@
 exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
+    SELENIUM_PROMISE_MANAGER:false,
     specs: ['spec.js'],
     capabilities: {
         browserName:'chrome', 
@@ -9,10 +10,11 @@ exports.config = {
             //args:["window-size=800,600"]
         }
     },
-    onPrepare: function() {
-        browser.driver.manage().window().maximize();
+    onPrepare: async function() {
+        await browser.driver.manage().window().maximize();
         console.log('Maximized');
-        browser.waitForAngularEnabled(false)
+        browser.waitForAngularEnabled(false);
+        browser.manage().timeouts().implicitlyWait(2000);
       },
         params: {
           input: {
