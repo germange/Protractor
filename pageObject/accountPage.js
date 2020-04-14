@@ -1,16 +1,21 @@
-let TextBox = require('../elements/textboxes');
+let TextBox = require('../elements/textBox');
+let BasePage = require('../base/bagePage');
 
-class AccountPage {
-    constructor() {
-  
-    };
-async getUserName(){
-    return this.getUser().getText();
-};
+let userNameLocator = by.css('a.account');
 
-getUser(){
-  return new TextBox(element(by.xpath('//*[@id="header"]/div[2]//a/span')),"User name");  
+class AccountPage extends BasePage {
+
+    async getUserName(){
+        return this.getUser().getText();
+    }
+
+  getUser(){
+      return new TextBox(element(userNameLocator),"User name");
+   }
+
+  getBaseElement(){
+      return new TextBox(element(userNameLocator),"User name");
+   }
 }
-  }
 
   module.exports = new AccountPage();

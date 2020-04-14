@@ -1,20 +1,24 @@
-let Button = require('../elements/buttons');
+let Button = require('../elements/button');
+let BasePage = require('../base/bagePage');
+
+let loginbuttonLocator = by.css('a.login');
 
 
-class HomePage {
-    constructor() {
-    };
-async get(){
-    await browser.get('http://automationpractice.com/index.php');
-};
-async clickLogin(){
-  await this.getLogInButton().click();
-};
+class HomePage extends BasePage {
+    async get(){
+        await browser.get('http://automationpractice.com/index.php');
+    }
+    async clickLogin(){
+        await this.getLogInButton().click();
+    }
 
-getLogInButton(){
-  return new Button(element((by.xpath('//*[@id="header"]//nav/div[1]/a'))),"Login Button");  
+  getLogInButton(){
+      return new Button(element(loginbuttonLocator),"Login Button");  
+    }
+  getBaseElement(){
+      return new Button(element(loginbuttonLocator),"Login Button");
+    }
 }
-  }
 
   module.exports = new HomePage();
 
