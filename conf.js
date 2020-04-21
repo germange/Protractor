@@ -2,6 +2,7 @@ exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     SELENIUM_PROMISE_MANAGER:false,
+    restartBrowserBetweenTests: false,
     specs: [
     './/specs/login.spec.js',
     './/specs/negativelogin.spec.js',
@@ -14,18 +15,19 @@ exports.config = {
     },
 
     onPrepare: async function() {
+      beforeEach(async function() {
         await browser.driver.manage().window().maximize();
         console.log('Maximized');
         browser.waitForAngularEnabled(false);
         browser.manage().timeouts().implicitlyWait(2000);
-
+      });
         let AllureReporter = require('jasmine-allure-reporter');
         jasmine.getEnv().addReporter(new AllureReporter({
           resultsDir: 'allure-results'
-        }));
-
+      }));
         jasmine.getEnv().afterEach(async function(){
           await createScreenshotAllure();
+          await browser.restart();
         });
       },    
         params: {

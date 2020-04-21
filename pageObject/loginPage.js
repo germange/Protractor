@@ -6,7 +6,7 @@ let TextBox = require('../elements/textBox');
 let emailInputLocator = by.xpath('//*[@id="email"]');
 let passwordInputLocator = by.xpath('//*[@id="passwd"]');
 let submitButton = by.xpath('//*[@id="SubmitLogin"]')
-let errorMessageLocator = by.css('ol > li');
+let errorMessageLocator = by.css('.alert.alert-danger li');
 
 class LoginPage extends BasePage{
     async userLogin(mail,pass){
@@ -16,15 +16,11 @@ class LoginPage extends BasePage{
             await this.getSubmitButton().click();
         })();
     }
-
     async getErrorMessage(){
-        return allure.createStep(`Warning text verification`, async ()=> {
         return this.getError().getText();
-        })();
     }
-  
     async clearEmail(){
-        await allure.createStep(`Clear email`, async ()=> { 
+        await allure.createStep(`Clean email`, async ()=> { 
         await this.getEmailInput().clear();
         })();
     }
