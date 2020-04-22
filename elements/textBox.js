@@ -1,7 +1,7 @@
 let BaseElement = require('../base/baseElement');
 
 class TextBox extends BaseElement {
-    async getText(){
+    async getText() {
         return this.protractorElement.getText();
     }
 }

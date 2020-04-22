@@ -8,33 +8,33 @@ let passwordInputLocator = by.xpath('//*[@id="passwd"]');
 let submitButton = by.xpath('//*[@id="SubmitLogin"]')
 let errorMessageLocator = by.css('.alert.alert-danger li');
 
-class LoginPage extends BasePage{
-    async userLogin(mail,pass){
+class LoginPage extends BasePage {
+    async userLogin(mail,pass) {
         await allure.createStep(`Login user ${mail} / ${pass}`, async ()=> {
             await this.getEmailInput().sendKeys(mail);
             await this.getPasswordInput().sendKeys(pass)
             await this.getSubmitButton().click();
         })();
     }
-    async getErrorMessage(){
+    async getErrorMessage() {
         return this.getError().getText();
     }
-    async clearEmail(){
+    async clearEmail() {
         await allure.createStep(`Clean email`, async ()=> { 
         await this.getEmailInput().clear();
         })();
     }
 
-  getEmailInput(){
+  getEmailInput() {
       return new Input(element(emailInputLocator), "Email input");
    }
-  getPasswordInput(){
+  getPasswordInput() {
       return new Input(element(passwordInputLocator), "Password input");
    }
-  getSubmitButton(){
+  getSubmitButton() {
       return new Button(element(submitButton), "Submit button");  
    }
-  getBaseElement(){
+  getBaseElement() {
       return new Input(element(emailInputLocator), "Email input");
    }
   getError(){

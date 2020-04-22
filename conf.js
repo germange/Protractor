@@ -15,17 +15,19 @@ exports.config = {
     },
 
     onPrepare: async function() {
-      beforeEach(async function() {
-        await browser.driver.manage().window().maximize();
-        console.log('Maximized');
-        browser.waitForAngularEnabled(false);
-        browser.manage().timeouts().implicitlyWait(2000);
-      });
+        beforeEach(async function() {
+            await browser.driver.manage().window().maximize();
+            console.log('Maximized');
+            browser.waitForAngularEnabled(false);
+            browser.manage().timeouts().implicitlyWait(2000);
+          });
+
         let AllureReporter = require('jasmine-allure-reporter');
         jasmine.getEnv().addReporter(new AllureReporter({
           resultsDir: 'allure-results'
-      }));
-        jasmine.getEnv().afterEach(async function(){
+        }));
+
+        jasmine.getEnv().afterEach(async function() {
           await createScreenshotAllure();
           await browser.restart();
         });
@@ -38,7 +40,7 @@ exports.config = {
         }    
   }
 
-  async function createScreenshotAllure(){
+  async function createScreenshotAllure() {
     let screenshotFile = await browser.takeScreenshot();
     await allure.createAttachment("Screenshot", ()=>{
       return new Buffer.from(screenshotFile, "base64")

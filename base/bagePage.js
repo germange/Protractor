@@ -1,5 +1,5 @@
 class BasePage{
-    async whaitForPageAvailable(){
+    async whaitForPageAvailable() {
        await this.getBaseElement().waitForVisible(); 
     }
 }

@@ -5,15 +5,15 @@ let userNameLocator = by.css('a.account');
 
 class AccountPage extends BasePage {
 
-    async getUserName(){
+    async getUserName() {
         return this.getUser().getText();
     }
 
-  getUser(){
+  getUser() {
       return new TextBox(element(userNameLocator),"User name");
    }
 
-  getBaseElement(){
+  getBaseElement() {
       return new TextBox(element(userNameLocator),"User name");
    }
 }
