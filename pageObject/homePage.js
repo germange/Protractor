@@ -5,26 +5,24 @@ let loginbuttonLocator = by.css('a.login');
 
 
 class HomePage extends BasePage {
-    async get(){
-      await allure.createStep(`Open link`, async ()=> {
-        await browser.get('http://automationpractice.com/index.php');
-      })();
-    }
-    async clickLogin(){
-      await allure.createStep(`Open login page`, async ()=> {
-        await this.getLogInButton().click();
-      })();
+    async get() {
+        await allure.createStep(`Open link`, async () => {
+            await browser.get('http://automationpractice.com/index.php');
+        })();
     }
 
-  getLogInButton(){
-      return new Button(element(loginbuttonLocator),"Login Button");  
+    async clickLogin() {
+        await allure.createStep(`Open login page`, async () => {
+            await this.getLogInButton().click();
+        })();
     }
-  getBaseElement(){
-      return new Button(element(loginbuttonLocator),"Login Button");
+
+    getLogInButton() {
+        return new Button(element(loginbuttonLocator), "Login Button");
+    }
+
+    getBaseElement() {
+        return new Button(element(loginbuttonLocator), "Login Button");
     }
 }
-
-  module.exports = new HomePage();
-
-
-
+module.exports = new HomePage();

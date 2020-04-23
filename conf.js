@@ -2,7 +2,14 @@ exports.config = {
     framework: 'jasmine',
     seleniumAddress: 'http://localhost:4444/wd/hub',
     SELENIUM_PROMISE_MANAGER:false,
-    specs: ['spec.js'],
+    restartBrowserBetweenTests: false,
+    jasmineNodeOpts: {
+      defaultTimeoutInterval: 90000,
+    },
+    specs: [
+    './/specs/login.spec.js',
+    './/specs/negativelogin.spec.js',
+    ],
     capabilities: {
         browserName:'chrome', 
         chromeOptions: {
@@ -11,22 +18,21 @@ exports.config = {
     },
 
     onPrepare: async function() {
-        await browser.driver.manage().window().maximize();
-        console.log('Maximized');
-        browser.waitForAngularEnabled(false);
-        browser.manage().timeouts().implicitlyWait(2000);
+        beforeEach(async function() {
+            await browser.driver.manage().window().maximize();
+            console.log('Maximized');
+            browser.waitForAngularEnabled(false);
+            browser.manage().timeouts().implicitlyWait(2000);
+          });
 
         let AllureReporter = require('jasmine-allure-reporter');
         jasmine.getEnv().addReporter(new AllureReporter({
           resultsDir: 'allure-results'
         }));
-        jasmine.getEnv().afterEach(function(done){
-          browser.takeScreenshot().then(function (png) {
-            allure.createAttachment('Screenshot', function () {
-              return new Buffer(png, 'base64')
-            }, 'image/png')();
-            done();
-          })
+
+        jasmine.getEnv().afterEach(async function() {
+          await createScreenshotAllure();
+          await browser.restart();
         });
       },    
         params: {
@@ -37,10 +43,9 @@ exports.config = {
         }    
   }
 
-  /*async function createScreenshotAllure(){
+  async function createScreenshotAllure() {
     let screenshotFile = await browser.takeScreenshot();
     await allure.createAttachment("Screenshot", ()=>{
-      return new Buffer (screenshotFile, "base64")
+      return new Buffer.from(screenshotFile, "base64")
     }, 'image/png')();
   }
-*/

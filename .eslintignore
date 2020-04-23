@@ -1,0 +1,9 @@
+allure-report
+allure-result
+.git
+.vscode
+jUnitResults
+results
+conf.js
+softAssert.js
+eyes.js
