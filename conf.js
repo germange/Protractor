@@ -3,6 +3,9 @@ exports.config = {
     seleniumAddress: 'http://localhost:4444/wd/hub',
     SELENIUM_PROMISE_MANAGER:false,
     restartBrowserBetweenTests: false,
+    jasmineNodeOpts: {
+      defaultTimeoutInterval: 90000,
+    },
     specs: [
     './/specs/login.spec.js',
     './/specs/negativelogin.spec.js',

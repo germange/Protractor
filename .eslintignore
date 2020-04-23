@@ -4,6 +4,6 @@ allure-result
 .vscode
 jUnitResults
 results
-configs
+conf.js
 softAssert.js
 eyes.js
