@@ -1,5 +1,6 @@
 let TextBox = require('../elements/textBox');
 let BasePage = require('../base/bagePage');
+let BaseElement = require('../base/baseElement');
 
 let userNameLocator = by.css('a.account');
 
@@ -13,7 +14,7 @@ class AccountPage extends BasePage {
     }
 
     getBaseElement() {
-        return new TextBox(element(userNameLocator), "User name");
+        return new BaseElement(element(userNameLocator), "User name");
     }
 }
 

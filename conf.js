@@ -9,6 +9,7 @@ exports.config = {
     specs: [
     './/specs/login.spec.js',
     './/specs/negativelogin.spec.js',
+    './/specs/createAccount.spec.js'
     ],
     capabilities: {
         browserName:'chrome', 

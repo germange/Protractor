@@ -2,11 +2,14 @@ let Input = require('../elements/input');
 let Button = require('../elements/button');
 let BasePage = require('../base/bagePage');
 let TextBox = require('../elements/textBox');
+let BaseElement = require('../base/baseElement');
 
 let emailInputLocator = by.xpath('//*[@id="email"]');
 let passwordInputLocator = by.xpath('//*[@id="passwd"]');
-let submitButton = by.xpath('//*[@id="SubmitLogin"]');
+let submitButtonLocator = by.xpath('//*[@id="SubmitLogin"]');
 let errorMessageLocator = by.css('.alert.alert-danger li');
+let emailCreateInputLocator = by.css('#email_create');
+let createAccButtonLocator = by.css('i.icon-user.left');
 
 class LoginPage extends BasePage {
     async userLogin(mail, pass) {
@@ -27,6 +30,13 @@ class LoginPage extends BasePage {
         })();
     }
 
+    async createAccount(mail) {
+        await allure.createStep(`Create account ${mail}`, async () => {
+            await this.getemailCreateInput().sendKeys(mail);
+            await this.getCreateAccButton().click();
+        })();
+    }
+
     getEmailInput() {
         return new Input(element(emailInputLocator), "Email input");
     }
@@ -36,15 +46,23 @@ class LoginPage extends BasePage {
     }
 
     getSubmitButton() {
-        return new Button(element(submitButton), "Submit button");
-    }
-
-    getBaseElement() {
-        return new Input(element(emailInputLocator), "Email input");
+        return new Button(element(submitButtonLocator), "Submit button");
     }
 
     getError() {
         return new TextBox(element(errorMessageLocator), "Error Message");
+    }
+
+    getCreateAccButton() {
+        return new Button(element(createAccButtonLocator), "Сreate Account button");
+    }
+
+    getemailCreateInput() {
+        return new Input(element(emailCreateInputLocator), "Email Create input");
+    }
+
+    getBaseElement() {
+        return new BaseElement(element(emailInputLocator), "Email input");
     }
 }
 
