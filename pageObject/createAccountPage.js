@@ -35,9 +35,9 @@ class CreateAccountPage extends BasePage {
 
     async SelectDoB() {
         await allure.createStep(`DoB`, async () => {
-            await this.getdayofbDropdown().selectOption('1');
-            await this.getmonthofbDropdown().selectOption('4');
-            await this.getyearofbDropdown().selectOption('3');
+            await this.getdayofbDropdown().selectOption('22');
+            await this.getmonthofbDropdown().selectOption('January');
+            await this.getyearofbDropdown().selectOption('2011');
         })();
     }
 
@@ -49,9 +49,9 @@ class CreateAccountPage extends BasePage {
             await this.getCompanyInput().sendKeys(company);
             await this.getAddressInput().sendKeys(address);
             await this.getCityInput().sendKeys(city);
-            await this.getStateDropdown().selectOption('1');
+            await this.getStateDropdown().selectOption('California');
             await this.getPostcodeInput().sendKeys(zip);
-            await this.getCountryDropdown().selectOption('1');
+            await this.getCountryDropdown().selectOption('United States');
             await this.getMobileInput().sendKeys(mobile);
             await this.getAliasInput().sendKeys(assign);
             await this.getSubmitButton().click();

@@ -9,7 +9,7 @@ let passwordInputLocator = by.xpath('//*[@id="passwd"]');
 let submitButtonLocator = by.xpath('//*[@id="SubmitLogin"]');
 let errorMessageLocator = by.css('.alert.alert-danger li');
 let emailCreateInputLocator = by.css('#email_create');
-let createAccButtonLocator = by.css('i.icon-user.left');
+let createAccButtonLocator = by.css('button#SubmitCreate');
 
 class LoginPage extends BasePage {
     async userLogin(mail, pass) {
