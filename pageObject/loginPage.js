@@ -62,7 +62,7 @@ class LoginPage extends BasePage {
     }
 
     getBaseElement() {
-        return new BaseElement(element(emailInputLocator), "Email input");
+        return new BaseElement(element(emailInputLocator), "Email input").waitForVisible();
     }
 }
 
