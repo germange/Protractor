@@ -7,8 +7,8 @@ exports.config = {
       defaultTimeoutInterval: 90000,
     },
     specs: [
-    './/specs/login.spec.js',
-    './/specs/negativelogin.spec.js',
+    //'.//specs/login.spec.js',
+    //'.//specs/negativelogin.spec.js',
     './/specs/createAccount.spec.js'
     ],
     capabilities: {
