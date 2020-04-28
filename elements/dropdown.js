@@ -8,14 +8,14 @@ let optionToWaitLocator = by.css(`.selector.hower.focus`);
 class DropDown extends BaseElement {
     async open() {
         await this.click();
-        new TextBox(element(optionToWaitLocator), `Dropdown Options`).waitForVisible();
+        await new TextBox(element(optionToWaitLocator), `Dropdown Options`).waitForVisible();
     }
 
     async selectOption(text) {
         await this.open();
         let optionLocator = Object.assign({}, optionToSelectLocator);
         optionLocator.value = optionLocator.value.replace(`TEXT_PLASE`, text);
-        new Button(element(optionLocator), `Select "${text}" `).click();
+        await new Button(element(optionLocator), `Select "${text}" `).click();
     }
 }
 

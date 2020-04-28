@@ -23,7 +23,7 @@ class HomePage extends BasePage {
     }
 
     getBaseElement() {
-        return new BaseElement(element(loginbuttonLocator), "Login Button").waitForVisible();
+        return new BaseElement(element(loginbuttonLocator), "Login Button");
     }
 }
 module.exports = new HomePage();

@@ -127,7 +127,7 @@ class CreateAccountPage extends BasePage {
     }
 
     getBaseElement() {
-        return new BaseElement(element(perFirstNameInputLocator), "First Name").waitForVisible();
+        return new BaseElement(element(perFirstNameInputLocator), "First Name");
     }
 }
 

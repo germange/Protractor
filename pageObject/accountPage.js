@@ -14,7 +14,7 @@ class AccountPage extends BasePage {
     }
 
     getBaseElement() {
-        return new BaseElement(element(userNameLocator), "User name").waitForVisible();
+        return new BaseElement(element(userNameLocator), "User name");
     }
 }
 
