@@ -1,5 +1,6 @@
 let Button = require('../elements/button');
 let BasePage = require('../base/bagePage');
+let BaseElement = require('../base/baseElement');
 
 let loginbuttonLocator = by.css('a.login');
 
@@ -22,7 +23,7 @@ class HomePage extends BasePage {
     }
 
     getBaseElement() {
-        return new Button(element(loginbuttonLocator), "Login Button");
+        return new BaseElement(element(loginbuttonLocator), "Login Button");
     }
 }
 module.exports = new HomePage();
