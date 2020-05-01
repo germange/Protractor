@@ -3,7 +3,7 @@ let Button = require('../elements/button');
 let TextBox = require('../elements/textBox');
 
 let optionToSelectLocator = by.xpath(`//option[contains(text(), "TEXT_PLASE")]`);
-let optionToWaitLocator = by.css(`.selector.hover.focus`);
+let optionToWaitLocator = by.css(`.focus`);
 
 class DropDown extends BaseElement {
     async open() {

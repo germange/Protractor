@@ -2,6 +2,7 @@ let Input = require('../elements/input');
 let Button = require('../elements/button');
 let BasePage = require('../base/bagePage');
 let DropDown = require('../elements/dropdown');
+let CheckBox = require('../elements/checkbox');
 let BaseElement = require('../base/baseElement');
 
 
@@ -22,22 +23,26 @@ let countryDropdownLocator = by.css('#id_country.form-control');
 let mobileInputLocator = by.css('#phone_mobile.form-control');
 let aliasInputLocator = by.css('#alias.form-control');
 let submitButtonLocator = by.css('#submitAccount');
+let newsLetterCheckBoxLocator = by.xpath(`//*[@id="newsletter"]/ancestor::span`);
+let offersCheckBoxLocator = by.xpath(`//*[@id="optin"]/ancestor::span`);
 
 
 class CreateAccountPage extends BasePage {
     async enterPersonalInfo(first, last, pass) {
         await allure.createStep(`Login user ${first} / ${last} / ${pass}`, async () => {
-            await this.getPerlFirstNameInput().sendKeys(first);
+            await this.getPerFirstNameInput().sendKeys(first);
             await this.getPerLastNameInput().sendKeys(last);
             await this.getPerPasswordInput().sendKeys(pass);
+            await this.getNewsLetterCheckBox().checkOption(true);
+            await this.getOffersCheckBox().checkOption(true);
         })();
     }
 
-    async SelectDoB() {
+    async SelectDoB(dd, mm, yy) {
         await allure.createStep(`DoB`, async () => {
-            await this.getdayofbDropdown().selectOption('22');
-            await this.getmonthofbDropdown().selectOption('January');
-            await this.getyearofbDropdown().selectOption('2011');
+            await this.getdayofbDropdown().selectOption(dd);
+            await this.getmonthofbDropdown().selectOption(mm);
+            await this.getyearofbDropdown().selectOption(yy);
         })();
     }
 
@@ -58,7 +63,7 @@ class CreateAccountPage extends BasePage {
         })();
     }
 
-    getPerlFirstNameInput() {
+    getPerFirstNameInput() {
         return new Input(element(perFirstNameInputLocator), "First Name");
     }
 
@@ -128,6 +133,14 @@ class CreateAccountPage extends BasePage {
 
     getBaseElement() {
         return new BaseElement(element(perFirstNameInputLocator), "First Name");
+    }
+
+    getOffersCheckBox() {
+        return new CheckBox(element(offersCheckBoxLocator), "Offers checkbox");
+    }
+
+    getNewsLetterCheckBox() {
+        return new CheckBox(element(newsLetterCheckBoxLocator), "News checkbox");
     }
 }
 
