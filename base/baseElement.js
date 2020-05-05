@@ -23,7 +23,7 @@ class BaseElement {
     }
 
     async getAttribute(attribute) {
-        await this.protractorElement.getAttribute(attribute);
+        return await this.protractorElement.getAttribute(attribute);
     }
 }
 

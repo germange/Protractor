@@ -33,7 +33,7 @@ class CreateAccountPage extends BasePage {
             await this.getPerFirstNameInput().sendKeys(first);
             await this.getPerLastNameInput().sendKeys(last);
             await this.getPerPasswordInput().sendKeys(pass);
-            await this.getNewsLetterCheckBox().checkOption(true);
+            await this.getNewsLetterCheckBox().checkOption(false);
             await this.getOffersCheckBox().checkOption(true);
         })();
     }
