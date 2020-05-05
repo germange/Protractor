@@ -21,6 +21,10 @@ class BaseElement {
         let EC = protractor.ExpectedConditions;
         await browser.wait(EC.presenceOf(this.protractorElement), ms);
     }
+
+    async getAttribute(attribute) {
+        return await this.protractorElement.getAttribute(attribute);
+    }
 }
 
 
