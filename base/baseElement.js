@@ -22,8 +22,8 @@ class BaseElement {
         await browser.wait(EC.presenceOf(this.protractorElement), ms);
     }
 
-    async getAttribute() {
-        await expect(this.protractorElement.getAttribute('class')).toEqual('checked');
+    async getAttribute(attribute) {
+        await this.protractorElement.getAttribute(attribute);
     }
 }
 

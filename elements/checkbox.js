@@ -2,7 +2,7 @@ let BaseElement = require('../base/baseElement');
 
 class CheckBox extends BaseElement {
     async isSelected() {
-        return await this.getAttribute();
+        return await this.getAttribute('class');
     }
 
     async checkOption(state) {
