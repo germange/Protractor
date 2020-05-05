@@ -6,9 +6,9 @@ class CheckBox extends BaseElement {
     }
 
     async checkOption(state) {
-        if (!(this.protractorElement.isSelected()) && state) {
+        if (!(await this.isSelected()) && state) {
             await this.protractorElement.click();
-        } else if (this.protractorElement.isSelected() && !state) {
+        } else if (await this.isSelected() && !state) {
             await this.protractorElement.click();
         }
     }
