@@ -11,7 +11,7 @@ describe('Create Account', () => {
         await homePage.get();
         await homePage.clickLogin();
         await loginPage.createAccount(`apptest709@gmail.com`);
-        await browser.sleep(2000);
+        await loginPage.waitForCreateAccountError();
         expect(await loginPage.getErrorMessageAccount()).toContain("An account using this email a"
         + "ddress has already been registered.");
 

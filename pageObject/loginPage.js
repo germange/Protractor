@@ -48,6 +48,10 @@ class LoginPage extends BasePage {
         })();
     }
 
+    async waitForCreateAccountError() {
+        await (new TextBox(element(createAccountErrorLocator), "Error Message Account")).waitForVisible(2000);
+    }
+
     getEmailInput() {
         return new Input(element(emailInputLocator), "Email input");
     }
