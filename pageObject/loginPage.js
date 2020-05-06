@@ -7,9 +7,10 @@ let BaseElement = require('../base/baseElement');
 let emailInputLocator = by.xpath('//*[@id="email"]');
 let passwordInputLocator = by.xpath('//*[@id="passwd"]');
 let submitButtonLocator = by.xpath('//*[@id="SubmitLogin"]');
-let errorMessageLocator = by.css('.alert.alert-danger li');
+let errorMessageLoginLocator = by.css('.alert.alert-danger li');
 let emailCreateInputLocator = by.css('#email_create');
 let createAccButtonLocator = by.css('button#SubmitCreate');
+let createAccountErrorLocator = by.css('#create_account_error');
 
 class LoginPage extends BasePage {
     async userLogin(mail, pass) {
@@ -20,21 +21,35 @@ class LoginPage extends BasePage {
         })();
     }
 
-    async getErrorMessage() {
-        return await this.getError().getText();
+    async getErrorMessageLogin() {
+        return await this.getErrorLogin().getText();
     }
 
-    async clearEmail() {
-        await allure.createStep(`Clean email`, async () => {
+    async clearEmailLogin() {
+        await allure.createStep(`Clean email Login`, async () => {
             await this.getEmailInput().clear();
         })();
     }
 
     async createAccount(mail) {
         await allure.createStep(`Create account ${mail}`, async () => {
-            await this.getemailCreateInput().sendKeys(mail);
+            await this.getEmailCreateInput().sendKeys(mail);
             await this.getCreateAccButton().click();
         })();
+    }
+
+    async getErrorMessageAccount() {
+        return await this.getCreateAccountError().getText();
+    }
+
+    async clearEmailAccount() {
+        await allure.createStep(`Clean email Account`, async () => {
+            await this.getEmailCreateInput().clear();
+        })();
+    }
+
+    async waitForCreateAccountError() {
+        await (new TextBox(element(createAccountErrorLocator), "Error Message Account")).waitForVisible(2000);
     }
 
     getEmailInput() {
@@ -49,16 +64,20 @@ class LoginPage extends BasePage {
         return new Button(element(submitButtonLocator), "Submit button");
     }
 
-    getError() {
-        return new TextBox(element(errorMessageLocator), "Error Message");
+    getErrorLogin() {
+        return new TextBox(element(errorMessageLoginLocator), "Error Message");
     }
 
     getCreateAccButton() {
         return new Button(element(createAccButtonLocator), "Сreate Account button");
     }
 
-    getemailCreateInput() {
+    getEmailCreateInput() {
         return new Input(element(emailCreateInputLocator), "Email Create input");
+    }
+
+    getCreateAccountError() {
+        return new TextBox(element(createAccountErrorLocator), "Error Message Account");
     }
 
     getBaseElement() {
