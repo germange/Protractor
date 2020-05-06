@@ -4,6 +4,7 @@ let BasePage = require('../base/bagePage');
 let DropDown = require('../elements/dropdown');
 let CheckBox = require('../elements/checkbox');
 let BaseElement = require('../base/baseElement');
+let TextBox = require('../elements/textBox');
 
 
 let perFirstNameInputLocator = by.css('#customer_firstname');
@@ -25,11 +26,12 @@ let aliasInputLocator = by.css('#alias.form-control');
 let submitButtonLocator = by.css('#submitAccount');
 let newsLetterCheckBoxLocator = by.xpath(`//*[@id="newsletter"]/ancestor::span`);
 let offersCheckBoxLocator = by.xpath(`//*[@id="optin"]/ancestor::span`);
+let alertTextBoxLocator = by.css('.alert.alert-danger');
 
 
 class CreateAccountPage extends BasePage {
     async enterPersonalInfo(first, last, pass) {
-        await allure.createStep(`Login user ${first} / ${last} / ${pass}`, async () => {
+        await allure.createStep(`Enter Personal Info ${first} / ${last} / ${pass}`, async () => {
             await this.getPerFirstNameInput().sendKeys(first);
             await this.getPerLastNameInput().sendKeys(last);
             await this.getPerPasswordInput().sendKeys(pass);
@@ -39,7 +41,7 @@ class CreateAccountPage extends BasePage {
     }
 
     async SelectDoB(dd, mm, yy) {
-        await allure.createStep(`DoB`, async () => {
+        await allure.createStep(`Select DoB`, async () => {
             await this.getdayofbDropdown().selectOption(dd);
             await this.getmonthofbDropdown().selectOption(mm);
             await this.getyearofbDropdown().selectOption(yy);
@@ -47,7 +49,7 @@ class CreateAccountPage extends BasePage {
     }
 
     async enterAddressInfo(first, last, company, address, city, zip, mobile, assign) {
-        await allure.createStep(`Enter Address ${first} / ${last} / ${company} / ${address}  
+        await allure.createStep(`Enter Address Info ${first} / ${last} / ${company} / ${address}  
         /${city} / ${zip} / ${mobile} / ${assign}`, async () => {
             await this.getAddlFirstNameInput().sendKeys(first);
             await this.getAddLastNameInput().sendKeys(last);
@@ -61,6 +63,10 @@ class CreateAccountPage extends BasePage {
             await this.getAliasInput().sendKeys(assign);
             await this.getSubmitButton().click();
         })();
+    }
+
+    async getAccountpageAlert() {
+        return await this.getAccountPageAlertTextBox().getText();
     }
 
     getPerFirstNameInput() {
@@ -131,8 +137,8 @@ class CreateAccountPage extends BasePage {
         return new Button(element(submitButtonLocator), "Submit button");
     }
 
-    getBaseElement() {
-        return new BaseElement(element(perFirstNameInputLocator), "First Name");
+    getAccountPageAlertTextBox() {
+        return new TextBox(element(alertTextBoxLocator), "Error Message allert");
     }
 
     getOffersCheckBox() {
@@ -141,6 +147,10 @@ class CreateAccountPage extends BasePage {
 
     getNewsLetterCheckBox() {
         return new CheckBox(element(newsLetterCheckBoxLocator), "News checkbox");
+    }
+
+    getBaseElement() {
+        return new BaseElement(element(perFirstNameInputLocator), "First Name");
     }
 }
 

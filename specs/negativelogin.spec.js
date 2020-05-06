@@ -6,13 +6,13 @@ describe('Login', () => {
         await homePage.get();
         await homePage.clickLogin();
         await loginPage.userLogin(browser.params.input.mail, '');
-        expect(await loginPage.getErrorMessage()).toEqual('Password is required.');
+        expect(await loginPage.getErrorMessageLogin()).toEqual('Password is required.');
 
         await loginPage.userLogin('', 'pass');
-        expect(await loginPage.getErrorMessage()).toEqual('Invalid password.');
+        expect(await loginPage.getErrorMessageLogin()).toEqual('Invalid password.');
 
-        await loginPage.clearEmail();
+        await loginPage.clearEmailLogin();
         await loginPage.userLogin('test@gmai.com', 'pass');
-        expect(await loginPage.getErrorMessage()).toEqual('Authentication failed.');
+        expect(await loginPage.getErrorMessageLogin()).toEqual('Authentication failed.');
     });
 });
