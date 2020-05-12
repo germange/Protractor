@@ -35,6 +35,12 @@ class HomePage extends BasePage {
         return await this.getsSearchResultsTextBox().getText();
     }
 
+    async searchResultsCount() {
+        let value = this.searchResults();
+        return await parseInt(value, 10);
+    }
+
+
     async selectFirstResult() {
         await this.getFirstSearchResultButton().click();
     }

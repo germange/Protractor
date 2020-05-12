@@ -2,7 +2,7 @@ let BasePage = require('../base/bagePage');
 let BaseElement = require('../base/baseElement');
 let TextBox = require('../elements/textBox');
 
-let backToSearchButtonLocator = by.css('strong>a');
+let backToSearchButtonLocator = by.css('[name=back]');
 let ltemNameTexboxLocator = by.css('h1');
 
 
