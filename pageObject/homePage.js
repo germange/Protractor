@@ -36,8 +36,8 @@ class HomePage extends BasePage {
     }
 
     async searchResultsCount() {
-        let stringvalue = this.searchResults();
-        return parseInt(await stringvalue, 10);
+        let stringvalue = await this.searchResults();
+        return parseInt(stringvalue, 10);
     }
 
 
