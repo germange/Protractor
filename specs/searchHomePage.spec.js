@@ -5,7 +5,7 @@ describe('Search on home page', () => {
     it('Positive', async () => {
         await homePage.get();
         await homePage.searchTOpFor('dress');
-        expect(await homePage.searchResultsCount()).toBeGreaterThan(50);
+        expect(await homePage.searchResultsCount()).toBeGreaterThan(0);
 
         await homePage.selectFirstResult();
         expect(await detailsPage.getItemName()).toContain('dress');
