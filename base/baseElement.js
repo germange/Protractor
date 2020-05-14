@@ -25,6 +25,10 @@ class BaseElement {
     async getAttribute(attribute) {
         return await this.protractorElement.getAttribute(attribute);
     }
+
+    async isPresent() {
+        return await this.protractorElement.isPresent();
+    }
 }
 
 

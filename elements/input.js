@@ -8,6 +8,10 @@ class Input extends BaseElement {
     async clear() {
         await this.protractorElement.clear();
     }
+
+    async getValue() {
+        return await this.protractorElement.getAttribute('value');
+    }
 }
 
 

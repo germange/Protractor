@@ -11,7 +11,8 @@ exports.config = {
     //'.//specs/negativelogin.spec.js',
     //'.//specs/createAccount.spec.js',
     //'.//specs/createAccountNegative.spec.js',
-    './/specs/searchHomePage.spec.js'
+    //'.//specs/searchHomePage.spec.js',
+    './/specs/addToCArtAndBuy.spec.js'
     ],
     capabilities: {
         browserName:'chrome', 
