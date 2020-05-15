@@ -9,7 +9,7 @@ let tShirtHeaderLocator = by.css('.cat-name');
 let listViewCheckBoxLocator = by.css('#list');
 let addToCartButtonLocator = by.css('[title="Add to cart"]');
 let productAddedTextBoxLocator = by.css('.icon-ok');
-let proceedToCheckoutButtonLocator = by.xpath('//*[@id="layer_cart"]/div[1]/div[2]/div[4]/a/span');
+let proceedToCheckoutButtonLocator = by.css('a.btn.btn-default.button.button-medium');
 
 
 class TShirtPage extends BasePage {

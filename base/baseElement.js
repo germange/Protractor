@@ -22,6 +22,11 @@ class BaseElement {
         await browser.wait(EC.presenceOf(this.protractorElement), ms);
     }
 
+    async waitForTextToBePresentInElementValue(ms = 15000, value) {
+        let EC = protractor.ExpectedConditions;
+        await browser.wait(EC.textToBePresentInElementValue(this.protractorElement, `${value}`), ms);
+    }
+
     async getAttribute(attribute) {
         return await this.protractorElement.getAttribute(attribute);
     }

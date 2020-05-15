@@ -23,7 +23,7 @@ class SummaryPage extends BasePage {
     }
 
     async quantityInputValueWaitForUpdate() {
-        await browser.sleep(2000);
+        await (new Input(element(quantityInPutLocator), "Input Value")).waitForTextToBePresentInElementValue(2000, '2');
     }
 
     async getQuantityInputValue() {
