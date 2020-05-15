@@ -10,8 +10,8 @@ let searchTopInputLocator = by.css('#search_query_top');
 let submitSearchTopButtonLocator = by.css('.button-search');
 let searchResultsTextBoxLocator = by.css('.heading-counter');
 let firstSearchResultButton = by.css('.product_list.row > li:nth-child(1) h5 > a');
-let womenMenuDropdownLocator = by.xpath('//*[@id="block_top_menu"]/ul/li[1]');
-let womenMenuTShirtButtonLocator = by.xpath('//*[@id="block_top_menu"]//li[1]//li[1]//li[1]/a');
+let womenMenuDropdownLocator = by.css('#block_top_menu a[title="Women"]');
+let womenMenuTShirtButtonLocator = by.css('.sfHover a[title="T-shirts"]');
 
 
 class HomePage extends BasePage {
