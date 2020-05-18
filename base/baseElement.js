@@ -34,6 +34,11 @@ class BaseElement {
     async isPresent() {
         return await this.protractorElement.isPresent();
     }
+
+    async waitForInvisible(ms = 15000) {
+        let EC = protractor.ExpectedConditions;
+        await browser.wait(EC.not(EC.presenceOf(this.protractorElement)), ms);
+    }
 }
 
 

@@ -12,7 +12,8 @@ exports.config = {
     //'.//specs/createAccount.spec.js',
     //'.//specs/createAccountNegative.spec.js',
     //'.//specs/searchHomePage.spec.js',
-    './/specs/addToCArtAndBuy.spec.js'
+    //'.//specs/addToCArtAndBuy.spec.js',
+    './/specs/deleteFromCart.spec.js'
     ],
     capabilities: {
         browserName:'chrome', 
