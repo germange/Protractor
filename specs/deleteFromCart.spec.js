@@ -8,11 +8,6 @@ describe('Delete from Cart', () => {
         await homePage.addItemToCart(1);
         await homePage.addItemToCart(2);
         await homePage.addItemToCart(3);
-        /*
-        await homePage.addToCart1stItem();
-        await homePage.addToCart2ndItem();
-        await homePage.addToCart3rdItem();
-        */
         expect(await homePage.cartItemQuantity()).toBe(3);
 
         await homePage.removeCartItem();

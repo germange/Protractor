@@ -51,7 +51,7 @@ class SummaryPage extends BasePage {
     }
 
     async waitForLastCartItemToBeRemoved() {
-        await (new TextBox(element(lastCartProductTextBoxtLocator), "Last Cart Item")).waitForInvisible();
+        await this.getLastCartProductTextBox().waitForInvisible();
     }
 
     getSummaryPageHeaderTextBox() {
@@ -76,6 +76,10 @@ class SummaryPage extends BasePage {
 
     getHomeButton() {
         return new Button(element(homeButtonLocator), "Home Button");
+    }
+
+    getLastCartProductTextBox() {
+        return new TextBox(element(lastCartProductTextBoxtLocator), "Last Cart Item");
     }
 
     getBaseElement() {

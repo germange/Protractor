@@ -100,7 +100,7 @@ class HomePage extends BasePage {
     }
 
     async waitForFirstCartItemToBeRemoved() {
-        await (new Image(element(cartFIrstItemImmageLocator), "1-st Cart Item Immage")).waitForInvisible(3000);
+        await this.getCartFIrstItemImmage().waitForInvisible(3000);
     }
 
     getLogInButton() {
@@ -151,6 +151,10 @@ class HomePage extends BasePage {
 
     getCartProductsNumberTextBox() {
         return new TextBox(element(cartProductsNumberTextBoxLocator), "Cart Products Number TextBox");
+    }
+
+    getCartFIrstItemImmage() {
+        return new Image(element(cartFIrstItemImmageLocator), "1-st Cart Item Immage")
     }
 
     getBaseElement() {
