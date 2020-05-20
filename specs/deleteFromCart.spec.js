@@ -5,9 +5,14 @@ let summaryPage = require('../pageObject/summaryPage');
 describe('Delete from Cart', () => {
     it('Positive', async () => {
         await homePage.get();
+        await homePage.addItemToCart(1);
+        await homePage.addItemToCart(2);
+        await homePage.addItemToCart(3);
+        /*
         await homePage.addToCart1stItem();
         await homePage.addToCart2ndItem();
         await homePage.addToCart3rdItem();
+        */
         expect(await homePage.cartItemQuantity()).toBe(3);
 
         await homePage.removeCartItem();

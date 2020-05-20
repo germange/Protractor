@@ -13,7 +13,6 @@ let deleteLastCartItemButtonLocator = by.css('.last_item a[class="cart_quantity_
 let homeButtonLocator = by.css('a.home');
 let lastCartProductTextBoxtLocator = by.css('[id="product_3_13_0_0"]');
 
-
 class SummaryPage extends BasePage {
     async getSummaryPageTitle() {
         return await this.getSummaryPageHeaderTextBox().getText();

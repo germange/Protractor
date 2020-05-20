@@ -13,15 +13,11 @@ let searchResultsTextBoxLocator = by.css('.heading-counter');
 let firstSearchResultButton = by.css('.product_list.row > li:nth-child(1) h5 > a');
 let womenMenuDropdownLocator = by.css('#block_top_menu a[title="Women"]');
 let womenMenuTShirtButtonLocator = by.css('.sfHover a[title="T-shirts"]');
-let firstItemImageLocator = by.css('.homefeatured img[alt="Faded Short Sleeve T-shirts"]');
-let addToCart1stItemButtonLocator = by.css('.homefeatured a[data-id-product="1"]');
+let nItemImageLocator = by.css('.homefeatured li:nth-child(TEXT_PLASE)');
+let addToCartButtonLocator = by.css('.homefeatured a[data-id-product="TEXT_PLASE"]');
 let continueShoppingButtonLocator = by.css('span[title="Continue shopping"]');
-let secondItemImageLocator = by.css('.homefeatured img[alt="Blouse"]');
-let addToCart2ndItemButtonLocator = by.css('.homefeatured a[data-id-product="2"]');
-let thirdItemImageLocator = by.css('.homefeatured img[alt="Printed Dress"]');
-let addToCart3rdItemButtonLocator = by.css('.homefeatured a[data-id-product="3"]');
 let shoppingCartDropDownLocator = by.css('a[title="View my shopping cart"]');
-let cartItemQuantityTextBoxLocator = by.css('.products > dt'); // $x("count(//*[class = products]|//dt)")
+let cartItemQuantityTextBoxLocator = by.css('.products > dt');
 let cartItemRemoveButtonLocator = by.css('.first_item a[class="ajax_cart_block_remove_link"]');
 let cartProductsNumberTextBoxLocator = by.css('.shopping_cart span[class="ajax_cart_quantity"]');
 let cartFIrstItemImmageLocator = by.css('.first_item a[title="Faded Shor..."]');
@@ -56,7 +52,6 @@ class HomePage extends BasePage {
         return parseInt(stringvalue, 10);
     }
 
-
     async selectFirstResult() {
         await allure.createStep(`Select First Search Result`, async () => {
             await this.getFirstSearchResultButton().click();
@@ -70,36 +65,24 @@ class HomePage extends BasePage {
         })();
     }
 
-    async addToCart1stItem() {
-        await allure.createStep(`Add To Cart 1-st Item`, async () => {
-            await this.getFirstItemImage().hover();
-            await this.getAddToCart1stItemButton().click();
-            await (new Button(element(continueShoppingButtonLocator), "Continue Shopping Btn")).waitForPresenceOf();
-            await this.getContinueShoppingButton().click();
-        })();
-    }
+    async addItemToCart(value) {
+        await allure.createStep(`Add Item ToCart`, async () => {
+            let itemImageLocator = Object.assign({}, nItemImageLocator);
+            itemImageLocator.value = itemImageLocator.value.replace(`TEXT_PLASE`, value);
+            await (new Image(element(itemImageLocator), `Item Image `)).hover();
 
-    async addToCart2ndItem() {
-        await allure.createStep(`Add To Cart 2-nd Item`, async () => {
-            await this.getSecondItemImage().hover();
-            await this.getAddToCart2ndItemButton().click();
-            await (new Button(element(continueShoppingButtonLocator), "Continue Shopping Btn")).waitForPresenceOf();
-            await this.getContinueShoppingButton().click();
-        })();
-    }
+            let addToCartButton = Object.assign({}, addToCartButtonLocator);
+            addToCartButton.value = addToCartButton.value.replace(`TEXT_PLASE`, value);
+            await (new Image(element(addToCartButton), `Add To Cart Button `)).click();
 
-    async addToCart3rdItem() {
-        await allure.createStep(`Add To Cart 3-rd Item`, async () => {
-            await this.getThirdItemImage().hover();
-            await this.getAddToCart3rdItemButton().click();
-            await (new Button(element(continueShoppingButtonLocator), "Continue Shopping Btn")).waitForPresenceOf();
+            await this.getContinueShoppingButton().waitForPresenceOf();
             await this.getContinueShoppingButton().click();
         })();
     }
 
     async cartItemQuantity() {
         await this.getShoppingCartDropDown().hover();
-        return await element.all(cartItemQuantityTextBoxLocator).count(); // TBD
+        return await this.getCartItemQuantityTextBox().count();
     }
 
     async removeCartItem() {
@@ -147,30 +130,6 @@ class HomePage extends BasePage {
 
     getWomenMenuTShirtButton() {
         return new Button(element(womenMenuTShirtButtonLocator), "Women TShirt button");
-    }
-
-    getFirstItemImage() {
-        return new Image(element(firstItemImageLocator), "First Item Image");
-    }
-
-    getAddToCart1stItemButton() {
-        return new Button(element(addToCart1stItemButtonLocator), "Ddd To Cart 1st Item Button");
-    }
-
-    getSecondItemImage() {
-        return new Image(element(secondItemImageLocator), "Secon Item Image");
-    }
-
-    getAddToCart2ndItemButton() {
-        return new Button(element(addToCart2ndItemButtonLocator), "Ddd To Cart 2nd Item Button");
-    }
-
-    getThirdItemImage() {
-        return new Image(element(thirdItemImageLocator), "Third Item Image");
-    }
-
-    getAddToCart3rdItemButton() {
-        return new Button(element(addToCart3rdItemButtonLocator), "Ddd To Cart 3rd Item Button");
     }
 
     getContinueShoppingButton() {
