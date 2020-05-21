@@ -8,6 +8,6 @@ describe('Search on home page', () => {
         expect(await homePage.searchResultsCount()).toBeGreaterThan(0);
 
         await homePage.selectFirstResult();
-        expect(await detailsPage.getItemName()).toContain('dress');
+        expect(await detailsPage.getItemName()).toContain('DRESS');
     });
 });
