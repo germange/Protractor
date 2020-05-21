@@ -3,7 +3,7 @@ let BaseElement = require('../base/baseElement');
 let TextBox = require('../elements/textBox');
 
 let backToSearchButtonLocator = by.css('[name=back]');
-let ltemNameTexboxLocator = by.css('.page-heading span[class="lighter"]');
+let ltemNameTexboxLocator = by.css('h1');
 
 
 class DetailsPage extends BasePage {

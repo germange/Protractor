@@ -54,6 +54,7 @@ class HomePage extends BasePage {
 
     async selectFirstResult() {
         await allure.createStep(`Select First Search Result`, async () => {
+            await this.getFirstSearchResultButton().hover();
             await this.getFirstSearchResultButton().click();
         })();
     }
