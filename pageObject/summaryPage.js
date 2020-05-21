@@ -11,7 +11,7 @@ let quantityInPutLocator = by.css('.cart_quantity_input.form-control.grey');
 let proceedToCheckoutButtonLocator = by.css('.standard-checkout.button-medium');
 let deleteLastCartItemButtonLocator = by.css('.last_item a[class="cart_quantity_delete"]');
 let homeButtonLocator = by.css('a.home');
-let lastCartProductTextBoxtLocator = by.css('[id="product_3_13_0_0"]');
+let lastCartProductTextBoxtLocator = by.css('tr[class="cart_item last_item address_0 odd"]');
 
 class SummaryPage extends BasePage {
     async getSummaryPageTitle() {
