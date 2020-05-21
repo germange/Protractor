@@ -2,6 +2,7 @@ class BaseElement {
     constructor(protractorElement, name) {
         this.protractorElement = protractorElement;
         this.elementName = name;
+        this.locator = protractorElement.locator.value;
     }
 
     async click() {
@@ -33,6 +34,19 @@ class BaseElement {
 
     async isPresent() {
         return await this.protractorElement.isPresent();
+    }
+
+    async waitForInvisible(ms = 15000) {
+        let EC = protractor.ExpectedConditions;
+        await browser.wait(EC.stalenessOf(this.protractorElement), ms);
+    }
+
+    all() {
+        return element.all(this.protractorElement.locator());
+    }
+
+    async count() {
+        return await this.all().count();
     }
 }
 
