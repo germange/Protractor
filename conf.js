@@ -7,12 +7,12 @@ exports.config = {
       defaultTimeoutInterval: 90000,
     },
     specs: [
-    //'.//specs/login.spec.js',
-    //'.//specs/negativelogin.spec.js',
-    //'.//specs/createAccount.spec.js',
-    //'.//specs/createAccountNegative.spec.js',
-    //'.//specs/searchHomePage.spec.js',
-    //'.//specs/addToCArtAndBuy.spec.js',
+    './/specs/login.spec.js',
+    './/specs/negativelogin.spec.js',
+    './/specs/createAccount.spec.js',
+    './/specs/createAccountNegative.spec.js',
+    './/specs/searchHomePage.spec.js',
+    './/specs/addToCArtAndBuy.spec.js',
     './/specs/deleteFromCart.spec.js'
     ],
     capabilities: {
